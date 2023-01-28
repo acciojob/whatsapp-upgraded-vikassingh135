@@ -178,7 +178,8 @@ public class WhatsappRepository {
                     if(adminMap.get(group).equals(user)) {
                         throw new Exception("Cannot remove admin");
                     } else {
-                        for(Message m : groupMessageMap.get(group)) {
+                        List<Message> listM = groupMessageMap.get(group);
+                        for(Message m : listM) {
                             if(senderMap.get(m).equals(u)) {
                                 senderMap.remove(m);
                                 groupMessageMap.get(group).remove(m);
@@ -193,6 +194,7 @@ public class WhatsappRepository {
             }
         }
         if(!flag) throw new Exception("User not found");
+        if(operandGroup==null) return 0;
         groupUserMap.get(operandGroup).remove(user);
         return groupMessageMap.get(operandGroup).size() + groupUserMap.get(operandGroup).size();
     }
