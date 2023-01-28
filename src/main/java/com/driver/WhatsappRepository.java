@@ -196,6 +196,6 @@ public class WhatsappRepository {
         if(!flag) throw new Exception("User not found");
         if(operandGroup==null) return 0;
         groupUserMap.get(operandGroup).remove(user);
-        return groupMessageMap.get(operandGroup).size() + groupUserMap.get(operandGroup).size();
+        return groupMessageMap.get(operandGroup).size() + groupUserMap.get(operandGroup).size() + senderMap.size();
     }
 }
