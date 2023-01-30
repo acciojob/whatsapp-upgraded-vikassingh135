@@ -170,6 +170,8 @@ public class WhatsappRepository {
         //If user is not the admin, remove the user from the group, remove all its messages from all the databases, and update relevant attributes accordingly.
         //If user is removed successfully, return (the updated number of users in the group + the updated number of messages in group + the updated number of overall messages)
 
+        Group operandGroup = null;
+        boolean flag = false;
         for(Group group : groupUserMap.keySet()) {
             for(User u : groupUserMap.get(group)) {
                 if(u.equals(user)) {
@@ -183,12 +185,14 @@ public class WhatsappRepository {
                             }
                         }
                         mobiles.remove(u.getMobile());
-                        groupUserMap.get(group).remove(u);
-                        return groupUserMap.get(group).size() + groupMessageMap.get(group).size();
+                        operandGroup = group;
+                        flag = true;
                     }
                 }
             }
         }
-        throw new Exception("User not found");
+        if(!flag) throw new Exception("User not found");
+        groupUserMap.remove(operandGroup);
+        return groupMessageMap.get(operandGroup).size() + groupUserMap.get(operandGroup).size();
     }
 }
