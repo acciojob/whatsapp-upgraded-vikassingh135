@@ -18,9 +18,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WhatsappService {
-    
-   @Autowired 
-   private WhatsappRepository whatsappRepository;
+  
+   private WhatsappRepository whatsappRepository = new WhatsappRepository();
     
     public String createUser(String name, String mobile) throws Exception {
         //If the mobile number exists in database, throw "User already exists" exception
