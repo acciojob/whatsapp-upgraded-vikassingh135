@@ -184,7 +184,7 @@ public class WhatsappRepository {
                         }
                         mobiles.remove(u.getMobile());
                         groupUserMap.get(group).remove(u);
-                        return groupUserMap.get(group).size();
+                        return groupUserMap.get(group).size() + groupMessageMap.get(group).size();
                     }
                 }
             }
