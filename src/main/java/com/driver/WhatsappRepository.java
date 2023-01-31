@@ -187,12 +187,13 @@ public class WhatsappRepository {
                         mobiles.remove(u.getMobile());
                         operandGroup = group;
                         flag = true;
+                        break;
                     }
                 }
             }
         }
         if(!flag) throw new Exception("User not found");
-        groupUserMap.remove(operandGroup);
+        groupUserMap.get(operandGroup).remove(user);
         return groupMessageMap.get(operandGroup).size() + groupUserMap.get(operandGroup).size();
     }
 }
